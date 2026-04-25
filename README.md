@@ -1,8 +1,10 @@
 HEAD
 # Welcome to your FTI App project
 
-TODO: Document your project here
+Financial literacy platform for First-time Earners
+Build an interactive web platform that stimulates real life financial scenarios and provide personalized learning paths on budgeting,taxes,investements for young professionals
 
+link:https://ftiapp.netlify.app/
 # string-sage
 SAGE university hackathon 
  
