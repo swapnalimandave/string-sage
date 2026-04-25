@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;700&family=Permanent+Marker&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* FTI Design System — Brutalist + Playful + Modern Fintech
+   All colors MUST be HSL. */
+
+@layer base {
+  :root {
+    /* Cream backdrop */
+    --background: 48 100% 97%;       /* #fffbf0 */
+    --foreground: 0 0% 6%;           /* ink black #101010 */
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 6%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 6%;
+
+    --primary: 0 0% 6%;              /* ink black */
+    --primary-foreground: 48 100% 97%;
+
+    --secondary: 270 100% 76%;       /* purple #b084ff */
+    --secondary-foreground: 0 0% 6%;
+
+    --muted: 48 30% 92%;
+    --muted-foreground: 0 0% 35%;
+
+    --accent: 73 100% 50%;           /* neon lime #ccff00 */
+    --accent-foreground: 0 0% 6%;
+
+    --destructive: 22 100% 50%;      /* orange #ff5e00 */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 6%;
+    --input: 0 0% 6%;
+    --ring: 73 100% 50%;
+
+    /* FTI brand tokens */
+    --lime: 73 100% 50%;
+    --purple: 270 100% 76%;
+    --orange: 22 100% 50%;
+    --ink: 0 0% 6%;
+    --cream: 48 100% 97%;
+
+    /* Status (CIBIL etc) */
+    --success: 142 70% 45%;
+    --success-soft: 142 70% 75%;
+    --warning: 48 100% 50%;
+    --danger: 0 85% 55%;
+
+    --radius: 0.75rem;
+
+    --shadow-brutal: 6px 6px 0 hsl(var(--ink));
+    --shadow-brutal-sm: 3px 3px 0 hsl(var(--ink));
+    --shadow-brutal-lg: 10px 10px 0 hsl(var(--ink));
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html, body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background-image:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .font-marker { font-family: 'Permanent Marker', cursive; }
+  .font-hand { font-family: 'Caveat', cursive; }
+  .font-display { font-family: 'Space Grotesk', sans-serif; }
+}
+
+@layer components {
+  .brutal-border { @apply border-[3px] border-foreground; }
+  .brutal-shadow { box-shadow: var(--shadow-brutal); }
+  .brutal-shadow-sm { box-shadow: var(--shadow-brutal-sm); }
+  .brutal-shadow-lg { box-shadow: var(--shadow-brutal-lg); }
+
+  .brutal-card {
+    @apply bg-card brutal-border brutal-shadow rounded-2xl;
+  }
+
+  .brutal-btn {
+    @apply inline-flex items-center justify-center gap-2 brutal-border rounded-xl px-5 py-3 font-display font-bold uppercase tracking-tight transition-all bg-card;
+    box-shadow: var(--shadow-brutal-sm);
+  }
+  .brutal-btn:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 hsl(var(--ink)); }
+  .brutal-btn:active { transform: translate(2px,2px); box-shadow: 0 0 0 hsl(var(--ink)); }
+
+  .tilt-1 { transform: rotate(-1.5deg); }
+  .tilt-2 { transform: rotate(2deg); }
+  .tilt-n { transform: rotate(-3deg); }
+
+  .sticker {
+    @apply inline-block px-3 py-1 brutal-border rounded-full font-marker text-sm;
+    box-shadow: var(--shadow-brutal-sm);
+  }
+
+  .wobble-border {
+    border-radius: 24px 18px 28px 14px / 16px 26px 18px 28px;
+  }
+}
+
+@layer utilities {
+  .bg-lime { background-color: hsl(var(--lime)); }
+  .bg-purple { background-color: hsl(var(--purple)); }
+  .bg-orange { background-color: hsl(var(--orange)); }
+  .bg-cream { background-color: hsl(var(--cream)); }
+  .bg-ink { background-color: hsl(var(--ink)); }
+  .text-lime { color: hsl(var(--lime)); }
+  .text-purple { color: hsl(var(--purple)); }
+  .text-orange { color: hsl(var(--orange)); }
+  .text-ink { color: hsl(var(--ink)); }
+
+  @keyframes float-slow { 0%,100%{transform:translateY(0) rotate(-3deg)} 50%{transform:translateY(-12px) rotate(3deg)} }
+  @keyframes wobble { 0%,100%{transform:rotate(-2deg)} 50%{transform:rotate(2deg)} }
+  @keyframes draw { from{stroke-dashoffset:1000} to{stroke-dashoffset:0} }
+  @keyframes pop-in { 0%{transform:scale(0.7) rotate(-8deg);opacity:0} 100%{transform:scale(1) rotate(0);opacity:1} }
+  .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+  .animate-wobble { animation: wobble 3s ease-in-out infinite; }
+  .animate-draw { stroke-dasharray: 1000; animation: draw 2s ease-out forwards; }
+  .animate-pop-in { animation: pop-in 0.5s cubic-bezier(0.68,-0.55,0.27,1.55) both; }
+}
