@@ -8,4 +8,6 @@ Building an interactive web platform that stimulates real life financial scenari
 link:https://ftiapp.netlify.app/
 # string-sage
 SAGE university hackathon 
+
+a fully functional and working project still need some improvements 
  
